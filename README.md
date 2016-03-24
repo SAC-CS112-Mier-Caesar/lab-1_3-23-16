@@ -1,4 +1,4 @@
-# lab-1_3-23-16
+# lab-2_3-23-16
 import java.util.Scanner;
 
 public class Game { 
