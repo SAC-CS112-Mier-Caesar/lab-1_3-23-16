@@ -1,24 +1,39 @@
-# lab-1_3-23-16
+import java.util.Scanner;
 import javax.swing.JOptionPane;
 
-public class GuessANumJoption{
 
-public static void main(String args[]){
-	String message;
+public class Game { 
+	public static void main(String[] args) { 
+		Scanner input = new Scanner(System.in); 
+		String userChoice; 
+		int computerNum; 
+		int playAgain;
+		String computerPlay;
+		String personPlay;
+		String message;
+		int count = 0;
+		
+		do {
+		personPlay = JOptionPane.showInputDialog(null, "Welcome to a rock, paper, scissors game! \nPlease enter R, P, or S : ");
+		computerNum = 1 + (int) (Math.random() * 3);
+		
+		if (computerNum == 1)
+			computerPlay = "R";
+		else
+			computerPlay = (computerNum == 2) ? "P": "S";
+		
+		message = String.format("Computer play is: %s\n your choice is: %s\n ", computerPlay, personPlay);
+		JOptionPane.showMessageDialog(null, message);
+		
+    
+         if (personPlay.equalsIgnoreCase(computerPlay))
+        	JOptionPane.showMessageDialog(null, "It's a tie!");
+        else if ((personPlay.equalsIgnoreCase("r") && computerPlay.equalsIgnoreCase("p")) || (personPlay.equalsIgnoreCase("p") && computerPlay.equalsIgnoreCase("s")) || (personPlay.equalsIgnoreCase("s") && computerPlay.equalsIgnoreCase("r")))
+            JOptionPane.showMessageDialog(null, "You lose.!");
+        else
+        	JOptionPane.showMessageDialog(null, "You Win!");
+         userChoice = JOptionPane.showInputDialog(null, "Do you want to play again? (Y=Yes or N=No");
+		} while(userChoice.equalsIgnoreCase("y"));
 
-String number = JOptionPane.showInputDialog("Enter a number: ");
-
-int i = Integer.parseInt(number);
-int computerNum = 1 + (int) ( Math.random() * 10 );
-
-message = String.format("Your number is %d\nComputer number is : %d\n", i, computerNum);
-JOptionPane.showMessageDialog(null, message);
-
-
-if ( i < computerNum)
-  JOptionPane.showMessageDialog(null, "Your number is smaller than the computers.");
-if ( i > computerNum)
-	JOptionPane.showMessageDialog(null, "Your number is greater than the computers.");
-if ( i == computerNum)
-	JOptionPane.showMessageDialog(null, "Your number matches the computers.");
-} }
+}
+}
