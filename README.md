@@ -1,24 +1,29 @@
 # lab-1_3-23-16
-import javax.swing.JOptionPane;
+import java.util.Scanner;
 
-public class GuessANumJoption{
+public class Game { 
+	public static void main(String[] args) { 
+		Scanner input = new Scanner(System.in); 
+		int userChoice; 
+		int computerNum; 
+		int playAgain; 
+		computerNum = 1 + (int) (Math.random() * 3);
 
-public static void main(String args[]){
-	String message;
+    System.out.println("Lets play Rock, Paper, Scissors! Ready?..");
+    do {
+        System.out.print("Rock, Paper, or Scissors?(1=Rock, 2=Paper, 3=Scissors): ");
 
-String number = JOptionPane.showInputDialog("Enter a number: ");
+        userChoice = input.nextInt();
 
-int i = Integer.parseInt(number);
-int computerNum = 1 + (int) ( Math.random() * 10 );
+        if (userChoice == computerNum)
+        	System.out.println("It's a tie!");
+        else if ((computerNum == 1 && userChoice == 3) || (computerNum == 2 && userChoice == 1) || (computerNum == 3 && userChoice == 2) )
+            System.out.println("You lose.!");
+        else
+        	System.out.println("You Win!");
 
-message = String.format("Your number is %d\nComputer number is : %d\n", i, computerNum);
-JOptionPane.showMessageDialog(null, message);
-
-
-if ( i < computerNum)
-  JOptionPane.showMessageDialog(null, "Your number is smaller than the computers.");
-if ( i > computerNum)
-	JOptionPane.showMessageDialog(null, "Your number is greater than the computers.");
-if ( i == computerNum)
-	JOptionPane.showMessageDialog(null, "Your number matches the computers.");
-} }
+        System.out.print("Want to play again? (1=Yes, 2=No): ");
+        playAgain = input.nextInt();
+    } while (playAgain == 1);
+}
+}
