@@ -1,29 +1,41 @@
-# lab-2_3-23-16
+# lab-6_3-23-16
+
 import java.util.Scanner;
+import javax.swing.JOptionPane;
+
 
 public class Game { 
 	public static void main(String[] args) { 
 		Scanner input = new Scanner(System.in); 
 		int userChoice; 
 		int computerNum; 
-		int playAgain; 
+		int playAgain;
+		String computerPlay;
+		String personPlay;
+		String message;
+		int count = 0;
+		
+		do {
+		personPlay = JOptionPane.showInputDialog(null, "Welcome to a rock, paper, scissors game! \nPlease enter R, P, or S : ");
 		computerNum = 1 + (int) (Math.random() * 3);
-
-    System.out.println("Lets play Rock, Paper, Scissors! Ready?..");
-    do {
-        System.out.print("Rock, Paper, or Scissors?(1=Rock, 2=Paper, 3=Scissors): ");
-
-        userChoice = input.nextInt();
-
-        if (userChoice == computerNum)
-        	System.out.println("It's a tie!");
-        else if ((computerNum == 1 && userChoice == 3) || (computerNum == 2 && userChoice == 1) || (computerNum == 3 && userChoice == 2) )
-            System.out.println("You lose.!");
+		
+		if (computerNum == 1)
+			computerPlay = "R";
+		else
+			computerPlay = (computerNum == 2) ? "P": "S";
+		
+		message = String.format("Computer play is: %s\n your choice is: %s\n ", computerPlay, personPlay);
+		JOptionPane.showMessageDialog(null, message);
+		
+    
+         if (personPlay.equalsIgnoreCase(computerPlay))
+        	JOptionPane.showMessageDialog(null, "It's a tie!");
+        else if ((personPlay.equalsIgnoreCase("r") && computerPlay.equalsIgnoreCase("p")) || (personPlay.equalsIgnoreCase("p") && computerPlay.equalsIgnoreCase("s")) || (personPlay.equalsIgnoreCase("s") && computerPlay.equalsIgnoreCase("r")))
+            JOptionPane.showMessageDialog(null, "You lose.!");
         else
-        	System.out.println("You Win!");
+        	JOptionPane.showMessageDialog(null, "You Win!");
+         count++;
+		} while(count < 3);
 
-        System.out.print("Want to play again? (1=Yes, 2=No): ");
-        playAgain = input.nextInt();
-    } while (playAgain == 1);
 }
 }
